@@ -19,7 +19,7 @@ namespace containers
             ArrayExample4();
             Console.WriteLine("ex 5:");
             ArrayExample5();
-            
+            */
             Console.WriteLine("Ex 1:");
             ListExample();
             Console.WriteLine("Ex 2:");
@@ -28,7 +28,7 @@ namespace containers
             ListExample3();
             Console.WriteLine("Ex 4:");
             ListExample4();
-            */
+            
             Console.WriteLine("Ex 1:");
             DictionaryExample();
             Console.Read();
@@ -184,7 +184,7 @@ namespace containers
         }
     }
 
-    class Foo : IComparable
+    class Foo : IComparable<Foo>
     {
         private int mData;
         public int Data
@@ -201,19 +201,12 @@ namespace containers
         public Foo() { }
         public Foo(int data) { mData = data; }
 
-        public int CompareTo(object obj)
+        public int CompareTo(Foo other)
         {
             //if param is null return 1
-            if (obj == null) return 1;
-            Foo otherFoo = obj as Foo;
-            if (otherFoo != null)
-            {
-                return this.Data.CompareTo(otherFoo.Data);
-            }
+            if (other == null) return 1;
             else
-            {
-                throw new ArgumentException("Object is not a Foo");
-            }
+                return this.Data.CompareTo(other.Data);
         }
     }
 }
